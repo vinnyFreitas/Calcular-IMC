@@ -1,17 +1,32 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      I.M.C
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-input label="Peso(Kg)" label-placement="floating" fill="solid" placeholder="Ex:62,5"  type="number" [(ngModel)]="peso" (ngModelChange)="validarPeso()"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input label="Altura(m)" label-placement="floating" fill="solid" placeholder="Ex:1,78m"  type="number" [(ngModel)]="altura" (ngModelChange)="validarAltura()"></ion-input>
+      </ion-item>
+      <button class="custom-button" (click)="calcularIMC()">Calcular IMC</button>
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card id="modal" *ngIf="resultado">
+    <ion-card-header>
+      Resultado do IMC
+    </ion-card-header>
+    <ion-card-content>
+      <p>Seu Índice de Massa Corporal (IMC) é: {{ resultado.toFixed(2) }}</p>
+      <p>{{ interpretarIMC(resultado) }}</p>
+    </ion-card-content>
+  </ion-card>
+ 
 </ion-content>
